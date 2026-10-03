@@ -1,0 +1,26 @@
+{
+  "name": "Movie®",
+  "short_name": "Movie®",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050607",
+  "theme_color": "#e50914",
+  "description": "Watch movies, TV shows, anime and live sports online.",
+  "icons": [
+    {
+      "src": "/images/favicons/favicon_1771172753.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/favicons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/favicons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

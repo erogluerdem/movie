@@ -1,0 +1,324 @@
+@import 'tailwindcss';
+@import './original.css';
+
+@source '../views/**/*.blade.php';
+@source '../js/**/*.vue';
+@source '../js/**/*.js';
+
+@theme {
+    --color-netflix: #e50914;
+    --color-netflix-hover: #b80710;
+    --color-netflix-light: #f40612;
+    --color-netflix-dark: #8c050c;
+    --font-sans: 'Roboto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-heading: 'Bebas Neue', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Movie® Custom Styles & Overrides */
+.glass-dark {
+    background: rgba(12, 14, 17, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.netflix-gradient {
+    background: linear-gradient(135deg, #e50914 0%, #b80710 100%);
+}
+
+.hero-overlay {
+    background: linear-gradient(0deg, #030712 0%, rgba(3, 7, 18, 0.8) 40%, rgba(3, 7, 18, 0.2) 80%, rgba(3, 7, 18, 0.9) 100%);
+}
+
+.hero-side-overlay {
+    background: linear-gradient(90deg, #030712 0%, rgba(3, 7, 18, 0.85) 45%, transparent 100%);
+}
+
+/* Native App Mobile Feel & Touch Enhancements */
+html, body {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* Prevent horizontal overflow from 3D carousel */
+.home-v2-hero {
+    overflow: hidden !important;
+}
+
+/* Fix Hero Banner action buttons text wrapping on mobile */
+@media (max-width: 767px) {
+    .home-v2-hero-actions {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px !important;
+    }
+    .home-v2-play, .home-v2-list {
+        height: 36px !important;
+        font-size: 0.72rem !important;
+        padding: 0 4px !important;
+        gap: 4px !important;
+        white-space: nowrap !important;
+    }
+    .home-v2-play span, .home-v2-list span {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+}
+
+/* Override rigid original.css mobile header constraints */
+@media (max-width: 1023px) {
+    .site-header-v2 > div {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+    }
+    .site-header-v2 > div > div {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        height: 56px !important;
+        width: 100% !important;
+    }
+    .site-header-left {
+        flex: 0 1 auto !important;
+        min-width: 0 !important;
+    }
+    .site-header-brand img {
+        height: 28px !important;
+        max-width: 110px !important;
+        width: auto !important;
+    }
+    .site-header-actions {
+        position: static !important;
+        width: auto !important;
+        max-width: none !important;
+        gap: 4px !important;
+    }
+    .site-header-actions .mobile-guest-actions,
+    .site-header-actions .mobile-user-actions,
+    .site-header-actions .header-mobile-actions,
+    .header-mobile-actions {
+        position: static !important;
+        width: auto !important;
+        max-width: none !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+    }
+}
+
+/* Safe Area Inset Helpers */
+.pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+}
+.pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pb-dock {
+    padding-bottom: calc(75px + env(safe-area-inset-bottom, 12px));
+}
+
+/* Hide scrollbars for app-like clean rails */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Touch micro-interactions */
+.touch-press {
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s ease;
+}
+.touch-press:active {
+    transform: scale(0.96);
+    opacity: 0.88;
+}
+
+/* Responsive bottom dock styles */
+#mobile-bottom-nav {
+    position: fixed;
+    right: 12px;
+    bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    left: 12px;
+    padding: 5px 8px;
+    border-radius: 22px;
+    background: rgba(10, 12, 16, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    z-index: 50;
+    user-select: none;
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-inner {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: center;
+    height: 52px;
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-item {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3px;
+    border-radius: 14px;
+    color: #94a3b8;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-item:active {
+    transform: scale(0.88);
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-item i {
+    font-size: 1.05rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-item span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    line-height: 1;
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-item.is-active {
+    color: #ffffff;
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-item.is-active i {
+    color: #e50914;
+    transform: translateY(-1px) scale(1.1);
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-item.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    width: 14px;
+    height: 3px;
+    border-radius: 3px;
+    background: #e50914;
+    box-shadow: 0 0 8px rgba(229, 9, 20, 0.8);
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-search {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    margin: 0 auto;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #e50914 0%, #b80710 100%);
+    box-shadow: 0 4px 16px rgba(229, 9, 20, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-search:active {
+    transform: scale(0.9);
+}
+
+#mobile-bottom-nav .mobile-bottom-nav-search i {
+    font-size: 1.05rem;
+}
+
+/* Trending & Catalogue Tabs */
+.trending-v2-tabs button,
+.trending-v2-tabs a {
+    display: flex;
+    height: 38px;
+    align-items: center;
+    gap: 8px;
+    padding: 0 13px;
+    border-radius: 7px;
+    border: none;
+    background: transparent;
+    color: #858c96;
+    font-size: 0.72rem;
+    font-weight: 650;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.trending-v2-tabs button:hover,
+.trending-v2-tabs a:hover {
+    color: #ffffff;
+}
+
+.trending-v2-tabs button.is-active,
+.trending-v2-tabs a.is-active {
+    background: var(--color-netflix, #e50914);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(229, 9, 20, 0.4);
+}
+
+.trending-v2-tabs button.is-active small,
+.trending-v2-tabs a.is-active small {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+/* Slide Up and Fade In Animations for Mobile Sheets & Modals */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-slide-up {
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Mobile App Touch & Layout Polish */
+@media (max-width: 640px) {
+    .trending-v2-card {
+        transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .trending-v2-card:active {
+        transform: scale(0.96);
+    }
+}
+
