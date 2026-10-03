@@ -19,7 +19,17 @@ class MoviePlatformSeeder extends Seeder
      */
     public function run(): void
     {
-        // Admin User
+        // Developer / Primary Admin User
+        User::firstOrCreate(
+            ['email' => 'dev@erdemeroglu.com.tr'],
+            [
+                'name' => 'Erdem Eroğlu',
+                'password' => Hash::make('password123'),
+                'role' => 'admin',
+            ]
+        );
+
+        // Demo Admin User
         User::firstOrCreate(
             ['email' => 'admin@movie.com'],
             [

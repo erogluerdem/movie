@@ -746,7 +746,13 @@
         </div>
 
         <div class="site-footer-bottom flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/10 mt-8">
-          <p>{{ $t('footer.copyright') }}</p>
+          <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xs text-gray-400">
+            <p>{{ $t('footer.copyright') }}</p>
+            <span class="hidden sm:inline text-gray-600">•</span>
+            <a href="https://erdemeroglu.com.tr/yazilimlar/movie" target="_blank" rel="noopener noreferrer" class="hover:text-netflix transition-colors">
+              Movie® by Erdem Eroğlu
+            </a>
+          </div>
           <div class="flex items-center gap-4">
             <LanguageSwitcher variant="footer" />
             <p class="site-footer-made hidden sm:block">{{ $t('footer.made_with') }} <i class="far fa-heart text-netflix" aria-hidden="true"></i></p>

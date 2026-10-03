@@ -1,9 +1,17 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "erogluerdem/movie",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Modern Film, Dizi, Anime & Spor Platformu (v1.0.0)",
+    "homepage": "https://erdemeroglu.com.tr/yazilimlar/movie",
+    "authors": [
+        {
+            "name": "Erdem Eroğlu",
+            "email": "dev@erdemeroglu.com.tr",
+            "homepage": "https://erdemeroglu.com.tr"
+        }
+    ],
+    "keywords": ["laravel", "vue", "inertia", "streaming", "movie", "tmdb"],
     "license": "MIT",
     "require": {
         "php": "^8.3",

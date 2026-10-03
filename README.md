@@ -17,6 +17,11 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License MIT" />
 </p>
 
+<p align="center">
+  🌐 <strong>Resmi Proje Sayfası:</strong> <a href="https://erdemeroglu.com.tr/yazilimlar/movie" target="_blank">erdemeroglu.com.tr/yazilimlar/movie</a><br>
+  📬 <strong>İletişim & Destek:</strong> <a href="mailto:dev@erdemeroglu.com.tr">dev@erdemeroglu.com.tr</a>
+</p>
+
 ---
 
 ## 📌 İçindekiler
@@ -97,11 +102,17 @@ Geleneksel web sitelerinin aksine sayfalar arası geçişler sayfa yenilenmeden 
 
 Projeyi `php artisan migrate --seed` ile başlattığınızda aşağıdaki hazır hesaplar otomatik olarak oluşturulur:
 
-### 👑 Yönetici (Admin) Hesabı
+### 👑 Birincil Geliştirici & Yönetici Hesabı
+* **Giriş Adresi:** `/login` veya `/admin`
+* **E-posta:** `dev@erdemeroglu.com.tr`
+* **Şifre:** `password123`
+* **Rol:** `admin` *(Yönetim paneline tam yetkili erişim sağlar)*
+
+### 🛠️ Demo Yönetici (Admin) Hesabı
 * **Giriş Adresi:** `/login` veya `/admin`
 * **E-posta:** `admin@movie.com`
 * **Şifre:** `password123`
-* **Rol:** `admin` *(Yönetim paneline tam yetkili erişim sağlar)*
+* **Rol:** `admin`
 
 ### 👤 Demo Standart Kullanıcı
 * **Giriş Adresi:** `/login`
@@ -233,6 +244,16 @@ Shared hosting (cPanel/Plesk) ortamına yüklerken güvenlik ve doğru çalışm
 │   └── console.php             # Zamanlanmış komutlar
 └── vite.config.js              # Vite & Vue derleme yapılandırması
 ```
+
+---
+
+## 👨‍💻 Geliştirici & İletişim
+
+* **Geliştirici:** Erdem Eroğlu
+* **Resmi Proje Sayfası:** [https://erdemeroglu.com.tr/yazilimlar/movie](https://erdemeroglu.com.tr/yazilimlar/movie)
+* **Kişisel Web Sitesi:** [https://erdemeroglu.com.tr](https://erdemeroglu.com.tr)
+* **İletişim & Destek:** [dev@erdemeroglu.com.tr](mailto:dev@erdemeroglu.com.tr)
+* **GitHub:** [@erogluerdem](https://github.com/erogluerdem)
 
 ---
 
