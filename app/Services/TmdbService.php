@@ -270,15 +270,20 @@ class TmdbService
         }
 
         try {
-            $response = $this->client()->get("{$this->baseUrl}/movie/{$tmdbId}", $this->buildParams([
-                'append_to_response' => 'credits,videos',
-            ]));
+            $cacheKey = "tmdb_movie_{$tmdbId}";
+            $responseJson = \Illuminate\Support\Facades\Cache::remember($cacheKey, now()->addHours(24), function () use ($tmdbId) {
+                $response = $this->client()->get("{$this->baseUrl}/movie/{$tmdbId}", $this->buildParams([
+                    'append_to_response' => 'credits,videos',
+                ]));
 
-            if (! $response->successful()) {
-                return ['status' => 'error', 'message' => 'TMDB title not found. Status: '.$response->status()];
-            }
+                if (! $response->successful()) {
+                    throw new \Exception('TMDB title not found. Status: '.$response->status());
+                }
 
-            $formatted = $this->formatMovieData($response->json());
+                return $response->json();
+            });
+
+            $formatted = $this->formatMovieData($responseJson);
 
             return ['status' => 'success', 'data' => $formatted];
         } catch (\Exception $e) {
@@ -310,15 +315,19 @@ class TmdbService
         }
 
         try {
-            $response = $this->client()->get("{$this->baseUrl}/tv/{$tmdbId}", $this->buildParams([
-                'append_to_response' => 'videos,credits',
-            ]));
+            $cacheKey = "tmdb_tv_{$tmdbId}";
+            $data = \Illuminate\Support\Facades\Cache::remember($cacheKey, now()->addHours(24), function () use ($tmdbId) {
+                $response = $this->client()->get("{$this->baseUrl}/tv/{$tmdbId}", $this->buildParams([
+                    'append_to_response' => 'videos,credits',
+                ]));
 
-            if (! $response->successful()) {
-                return ['status' => 'error', 'message' => 'TMDB series not found. Status: '.$response->status()];
-            }
+                if (! $response->successful()) {
+                    throw new \Exception('TMDB series not found. Status: '.$response->status());
+                }
 
-            $data = $response->json();
+                return $response->json();
+            });
+
             $genres = isset($data['genres']) ? array_column($data['genres'], 'name') : [];
             $isAnime = in_array('Animation', $genres) && (
                 in_array('JP', $data['origin_country'] ?? []) ||

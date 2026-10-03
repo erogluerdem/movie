@@ -592,8 +592,20 @@ const markAsWatched = async () => {
   }
 };
 
+const handleBeforeUnload = () => {
+  if (!isWatched.value && navigator.sendBeacon) {
+    const data = new Blob([JSON.stringify({
+      media_type: 'movie',
+      media_id: props.movie.id,
+      progress_percent: 25 // Approximate progress on unload
+    })], { type: 'application/json' });
+    navigator.sendBeacon('/api/watch/progress', data);
+  }
+};
+
 onMounted(() => {
   window.addEventListener('keydown', handleKeyDown);
+  window.addEventListener('beforeunload', handleBeforeUnload);
   
   // Fake tracking for partial progress (e.g., 20%) to show up in "Continue Watching"
   setTimeout(() => {
@@ -609,6 +621,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeyDown);
+  window.removeEventListener('beforeunload', handleBeforeUnload);
 });
 
 const currentUrl = computed(() => {

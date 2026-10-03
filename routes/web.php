@@ -57,7 +57,7 @@ Route::get('/sports/event/{slug}', [SportController::class, 'event'])->name('spo
 
 // Search
 Route::get('/search', [SearchController::class, 'index'])->name('search');
-Route::get('/api/search/live', [SearchController::class, 'live'])->name('api.search.live');
+Route::get('/api/search/live', [SearchController::class, 'live'])->name('api.search.live')->middleware('throttle:60,1');
 Route::get('/api/search/mega', [SearchController::class, 'mega'])->name('api.search.mega');
 
 // Watchlist
